@@ -4,6 +4,7 @@
  * Copyright (C) Nginx, Inc.
  */
 
+## first comment for nginx source code
 
 #include <ngx_config.h>
 #include <ngx_core.h>
@@ -210,7 +211,7 @@ static char **ngx_os_environ;
 int ngx_cdecl    //ngx_cdecl宏用于显式声明应使用的调用约定，在跨平台移植时有用，在linux版本的nginx程序中，该宏被定义为空
 main(int argc, char *const *argv)
 {
-    ngx_int_t         i;  
+    ngx_int_t         i;
     ngx_log_t        *log;   //保存日志结构
     ngx_cycle_t      *cycle, init_cycle; //初始化时的主结构体，在平滑升级服务器时，init_cycle负责升级前的信息,cycle负责升级后的信息
     ngx_core_conf_t  *ccf; //保存配置上下文
@@ -850,7 +851,7 @@ ngx_process_options(ngx_cycle_t *cycle)
     u_char  *p;
     size_t   len;
 	//ngx_prefix 表示nginx安装路径
-    if (ngx_prefix) { 
+    if (ngx_prefix) {
         len = ngx_strlen(ngx_prefix);
         p = ngx_prefix;
 
@@ -1077,7 +1078,7 @@ ngx_core_module_init_conf(ngx_cycle_t *cycle, void *conf)
     if (ccf->lock_file.len == 0) {
         ngx_str_set(&ccf->lock_file, NGX_LOCK_PATH);
     }
-    
+
     //初始化lock_file
     if (ngx_conf_full_name(cycle, &ccf->lock_file, 0) != NGX_OK) {
         return NGX_CONF_ERROR;
@@ -1098,7 +1099,7 @@ ngx_core_module_init_conf(ngx_cycle_t *cycle, void *conf)
             ngx_log_error(NGX_LOG_EMERG, cycle->log, 0,
                           "\"lock_file\" could not be changed, ignored");
         }
-        
+
         //初始化ngx_cycle->lock_file
         cycle->lock_file.len = lock_file.len + 1;
         lock_file.len += sizeof(".accept");
