@@ -28,6 +28,9 @@ static ngx_command_t  ngx_conf_commands[] = {
 
       ngx_null_command
 };
+/*
+  ngx_command_t数组以ngx_null_command 为终结符（就好像字符串以'\0'为终结符一样）.
+*/
 
 
 ngx_module_t  ngx_conf_module = {
@@ -232,7 +235,7 @@ ngx_conf_parse(ngx_conf_t *cf, ngx_str_t *filename)
              * the custom handler, i.e., that is used in the http's
              * "types { ... }" directive
              */
-            
+
             //使用handler处理
             rv = (*cf->handler)(cf, NULL, cf->handler_conf);
             if (rv == NGX_CONF_OK) {
@@ -386,7 +389,7 @@ ngx_conf_handler(ngx_conf_t *cf, ngx_int_t last)
             /* set up the directive's configuration context */
 
             conf = NULL;
-			
+
 			//最核心的地方，
 
             if (cmd->type & NGX_DIRECT_CONF) {
